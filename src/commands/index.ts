@@ -34,6 +34,8 @@ export const bootstrap = (client: Client): void => {
         case nowplaying.name:
           nowplaying.excute(interaction);
           break;
+        default:
+          interaction.followUp("Chưa code okeeeee!!!")
       }
     } catch (e) {
       interaction.reply(messages.error);
