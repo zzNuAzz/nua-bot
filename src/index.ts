@@ -1,12 +1,13 @@
+if (process.env.NODE_ENV === 'production') {
+	require('module-alias/register');
+}
+
 import { config } from 'dotenv';
 import { Client, Intents } from 'discord.js';
 import { bootstrap } from './commands';
 
 config();
 
-if (process.env.NODE_ENV === 'production') {
-	require('module-alias/register');
-}
 
 const client = new Client({
 	intents: [
