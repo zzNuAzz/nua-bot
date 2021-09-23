@@ -17,28 +17,30 @@ export const bootstrap = (client: Client): void => {
     try {
       switch (interaction.commandName) {
         case play.name:
-          play.execute(interaction);
+          await play.execute(interaction);
           break;
         case pause.name:
-          pause.excute(interaction);
+          await pause.excute(interaction);
           break;
         case resume.name:
-          resume.excute(interaction);
+          await resume.excute(interaction);
           break;
         case skip.name:
-          skip.excute(interaction);
+          await skip.excute(interaction);
           break;
         case leave.name:
-          leave.excute(interaction);
+          await leave.excute(interaction);
           break;
         case nowplaying.name:
-          nowplaying.excute(interaction);
+          await nowplaying.excute(interaction);
           break;
         default:
-          interaction.followUp("Chưa code okeeeee!!!")
+          await interaction.deferReply();
+          await interaction.reply(messages.inMaintenance);
+          return;
       }
-    } catch (e) {
-      interaction.reply(messages.error);
+    } catch (err) {
+      await interaction.reply(messages.error+" "+(err as Error).message);
     }
   });
 };
