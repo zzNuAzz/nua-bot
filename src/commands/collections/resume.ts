@@ -12,7 +12,7 @@ export const resume = {
             await interaction.followUp(messages.joinVoiceChannel);
             return;
         }
-        if (server.audioPlayer.state.status === AudioPlayerStatus.Playing) {
+        if (server.audioPlayer.state.status === AudioPlayerStatus.Paused) {
             server.audioPlayer.unpause();
             await interaction.followUp(messages.resumed);
             return;
