@@ -36,7 +36,7 @@ export const bootstrap = (client: Client): void => {
           break;
         default:
           await interaction.deferReply();
-          await interaction.reply(messages.inMaintenance);
+          await interaction.followUp(messages.inMaintenance);
           return;
       }
     } catch (err) {
