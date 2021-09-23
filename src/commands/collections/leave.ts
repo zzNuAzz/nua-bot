@@ -3,7 +3,7 @@ import { servers } from '@/models/Server';
 import { CommandInteraction } from 'discord.js';
 
 export const leave = {
-    name: 'leavve',
+    name: 'leave',
     excute: async (interaction: CommandInteraction): Promise<void> => {
         await interaction.deferReply();
         const server = servers.get(interaction.guildId as string);
