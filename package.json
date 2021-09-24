@@ -1,14 +1,14 @@
 {
 	"name": "nua-bot",
-	"version": "1.0.3",
+	"version": "1.1.1",
 	"description": "Bot play music for discord",
 	"main": "dist/index.js",
 	"repository": "git@github.com:zzNuAzz/nua-bot.git",
 	"author": "zzNuAzz <chumeopoco@gmail.com>",
 	"license": "MIT",
 	"engines": {
-    		"node": ">=16.6.0"
-  	},
+		"node": ">=16.6.0"
+	},
 	"scripts": {
 		"start": "NODE_ENV=production node dist/index.js",
 		"build": "rm -rf dist && tsc",
@@ -23,6 +23,7 @@
 		"libsodium-wrappers": "^0.7.9",
 		"module-alias": "^2.2.2",
 		"moment": "^2.29.1",
+		"reconlx": "^2.4.3",
 		"scdl-core": "^1.0.17",
 		"ytdl-core": "^4.9.1",
 		"ytpl": "^2.2.3",

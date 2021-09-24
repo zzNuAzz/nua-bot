@@ -1,16 +1,17 @@
 import messages from '@/constants/messages';
 import { QueueItem, Server, servers } from '@/models/Server';
 import { YoutubeVideoService } from '@/services/youtube';
+import { Command } from '@/types/Command';
 import { Platform, Song } from '@/types/Song';
 import {
 	entersState,
 	joinVoiceChannel,
 	VoiceConnectionStatus,
 } from '@discordjs/voice';
-import { CommandInteraction, GuildMember } from 'discord.js';
+import { CommandInteraction, GuildMember, VoiceChannel } from 'discord.js';
 import { createPlayMessage } from '../messages/playMessage';
 
-export const play = {
+export const play:Command = {
 	name: 'play',
 	execute: async (interaction: CommandInteraction): Promise<void> => {
 		await interaction.deferReply();
@@ -27,9 +28,19 @@ export const play = {
 						guildId: channel.guild.id,
 						adapterCreator: channel.guild.voiceAdapterCreator,
 					}),
-					interaction.guildId as string
+					interaction.guildId as string,
+					channel.id
 				);
 				servers.set(interaction.guildId as string, server);
+			}
+		} else {
+			if (
+				interaction.member instanceof GuildMember &&
+				interaction.member.voice.channel &&
+				interaction.member.voice.channel.id !== server.channelId
+			) {
+				console.log('Change channel');
+				server.joinVoiceChannel(interaction.member.voice.channel as VoiceChannel);
 			}
 		}
 		if (!server) {

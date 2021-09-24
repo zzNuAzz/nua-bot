@@ -1,14 +1,15 @@
-import { Constants, ApplicationCommandData } from 'discord.js';
+import { ChatCommandData } from '@/types/ChatCommandData';
+import { Constants, ApplicationCommandData, ChatInputApplicationCommandData } from 'discord.js';
 
-export const schema: ApplicationCommandData[] = [
+export const slashSchema: ApplicationCommandData[] = [
     {
         name: 'play',
-        description: 'Plays a song or playlist on Youtube.',
+        description: 'Hát 1 bài hoặc 1 danh sách trên Dzutube',
         options: [
             {
                 name: 'input',
                 type: Constants.ApplicationCommandOptionTypes.STRING,
-                description: 'The url or keyword to search videos or playlist on Youtube',
+                description: 'URL hoặc từ khoá tìm kiếm video hoặc playlist trên Dzutube.',
                 required: true
             }
         ]
@@ -28,58 +29,68 @@ export const schema: ApplicationCommandData[] = [
     //   },
       {
         name: 'skip',
-        description: 'Skip to the next song in the queue',
+        description: 'Nhảy đến bài tiếp theo.',
       },
       {
         name: 'queue',
-        description: 'See the music queue',
+        description: 'Xem danh sách bài hái hiện tại.',
       },
       {
         name: 'pause',
-        description: 'Pauses the song that is currently playing',
+        description: 'Tạm dừng bài đang hát.',
       },
       {
         name: 'resume',
-        description: 'Resume playback of the current song',
+        description: 'Tiếp tục hát bài đang dừng.',
       },
       {
         name: 'leave',
-        description: 'Leave the voice channel',
+        description: 'Rời khỏi kênh đang hát.',
       },
       {
         name: 'np',
-        description: 'See the song that is currently playing',
+        description: 'Xem bài đang hát.',
       },
       {
         name: 'jump',
-        description: 'Jump to song in queue by position',
+        description: 'Nhảy đến một bài trong hàng đợi.',
         options: [
           {
             name: 'position',
             type: Constants.ApplicationCommandOptionTypes.NUMBER,
-            description: 'The position of song in queue',
+            description: 'Vị trí bài cần nhảy.',
             required: true,
           },
         ],
       },
       {
         name: 'remove',
-        description: 'Remove song in queue by position',
+        description: 'Xoá 1 bài trong hàng đợi.',
         options: [
           {
             name: 'position',
             type: Constants.ApplicationCommandOptionTypes.NUMBER,
-            description: 'The position of song in queue',
+            description: 'Vị trí của bằi trong hàng đợi.',
             required: true,
           },
         ],
       },
       {
         name: 'ping',
-        description: 'See the ping to server',
+        description: 'Xem ping.',
       },
       {
         name: 'help',
-        description: 'See the help for this bot',
+        description: 'Hướng dẫn sử dụng.',
       },
+]
+
+// export const prefix = '!';
+
+export const chatCommand: ChatCommandData[] = [
+  {
+    name: '!nuabot_deploy',
+    description: 'Deploy slash command to server',
+    role: 'admin',
+  }
 ]

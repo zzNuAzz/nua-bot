@@ -4,7 +4,7 @@ import { CommandInteraction } from 'discord.js';
 
 export const skip = {
     name: 'skip',
-    excute: async (interaction: CommandInteraction): Promise<void> => {
+    execute: async (interaction: CommandInteraction): Promise<void> => {
         await interaction.deferReply();
         const server = servers.get(interaction.guildId as string);
         if(!server) {

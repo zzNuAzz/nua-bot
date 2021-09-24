@@ -6,11 +6,12 @@ import {
 	createAudioPlayer,
 	createAudioResource,
 	entersState,
+	joinVoiceChannel,
 	VoiceConnection,
 	VoiceConnectionDisconnectReason,
 	VoiceConnectionStatus,
 } from '@discordjs/voice';
-import { Snowflake } from 'discord.js';
+import { Snowflake, VoiceChannel } from 'discord.js';
 import ytdl from 'ytdl-core';
 
 export interface QueueItem {
@@ -20,15 +21,17 @@ export interface QueueItem {
 
 export class Server {
 	public guildId: string;
+	public channelId: string;
 	public playing?: QueueItem;
 	public queue: QueueItem[];
 	public readonly voiceConnection: VoiceConnection;
 	public readonly audioPlayer: AudioPlayer;
 	private isReady = false;
 
-	constructor(voiceConnection: VoiceConnection, guildId: string) {
+	constructor(voiceConnection: VoiceConnection, guildId: string, channelId: string) {
 		this.voiceConnection = voiceConnection;
 		this.guildId = guildId;
+		this.channelId = channelId;
 		this.queue = [];
 		this.playing = undefined;
 		this.audioPlayer = createAudioPlayer();
@@ -100,6 +103,15 @@ export class Server {
 		});
 
 		this.voiceConnection.subscribe(this.audioPlayer);
+	}
+
+	public joinVoiceChannel(channel: VoiceChannel): void {
+		joinVoiceChannel({
+			channelId: channel.id,
+			guildId: channel.guild.id,
+			adapterCreator: channel.guild.voiceAdapterCreator,
+		}),
+		this.channelId = channel.id;
 	}
 
 	public async addSongs(queueItems: QueueItem[]): Promise<void> {
@@ -184,6 +196,10 @@ export class Server {
             // if stream song incorupted, play next song in queue
 			this.play();
 		}
+	}
+
+	public leaveIfEmpty() {
+		
 	}
 }
 

@@ -1,11 +1,12 @@
 import messages from '@/constants/messages';
 import { servers } from '@/models/Server';
+import { Command } from '@/types/Command';
 import { CommandInteraction } from 'discord.js';
 import { createNowPlayingMessage } from '../messages/nowPlayingMessage';
 
-export const nowplaying = {
+export const nowplaying:Command = {
     name: 'np',
-    excute: async (interaction: CommandInteraction): Promise<void> => {
+    execute: async (interaction: CommandInteraction): Promise<void> => {
         await interaction.deferReply();
         const server = servers.get(interaction.guildId as string);
         if(!server) {
