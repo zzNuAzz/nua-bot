@@ -4,8 +4,10 @@ if (process.env.NODE_ENV === 'production') {
 
 import { config } from 'dotenv';
 import { Client, Intents, VoiceState } from 'discord.js';
+const { DiscordTogether } = require('discord-together');
 import { bootstrap } from './commands';
 import { servers } from './models/Server';
+
 
 config();
 
@@ -16,7 +18,9 @@ const client = new Client({
 		Intents.FLAGS.GUILD_VOICE_STATES,
 		Intents.FLAGS.GUILD_INTEGRATIONS,
 	],
-});
+}) as Client;
+
+const clientDiscordTogether = new DiscordTogether(client);
 
 client.on('ready', () => {
 	console.log(`> Bot is on ready`);
@@ -40,5 +44,5 @@ client.on('voiceStateUpdate', (oldState: VoiceState, newState: VoiceState) => {
 });
 
 client.login(process.env.TOKEN).then(() => {
-	bootstrap(client);
+	bootstrap(client, clientDiscordTogether);
 });

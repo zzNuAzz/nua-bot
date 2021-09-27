@@ -10,7 +10,7 @@ export const queue = {
     await interaction.deferReply();
     const server = servers.get(interaction.guildId as string);
     if (!server) {
-      await interaction.followUp(messages.joinVoiceChannel);
+      await interaction.followUp(messages.notInVoiceChannel);
       return;
     }
     if (server.queue.length === 0) {

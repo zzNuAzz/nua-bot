@@ -83,13 +83,18 @@ export const slashSchema: ApplicationCommandData[] = [
         name: 'help',
         description: 'Hướng dẫn sử dụng.',
       },
+      {
+        name: 'watch_together',
+        description: 'Xem Youtube cùng nhau'
+      }
 ]
 
 // export const prefix = '!';
 
 export const chatCommand: ChatCommandData[] = [
   {
-    name: '!nuabot_deploy',
+    type: 'deploy',
+    name: '!nuadev_deploy',
     description: 'Deploy slash command to server',
     role: 'admin',
   }
