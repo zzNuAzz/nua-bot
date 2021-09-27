@@ -7,7 +7,7 @@ export const youtubeVideoRegex = new RegExp(
   
   // Validate Youtube playlist URL
   export const youtubePlaylistRegex = new RegExp(
-    /(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*/,
+    /(?!.*\?.*\bv=)https:\/\/(www\.)?youtube\.com\/.*\?.*\blist=.*/,
   );
   
   // Validate SoundCloud track URL
