@@ -16,6 +16,7 @@ export const deploy = (client: Client): void => {
 				await message.guild.commands.set(slashSchema);
 				const commands = await message.guild.commands.fetch();
 				await message.author.send(`${messages.deployed}\n✔ Set ${commands.size} slash command`);
+				await message.reply('Done');
 			} catch (e) {
 				console.log(e);
 				message.reply(messages.deployedFail);
