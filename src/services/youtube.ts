@@ -14,7 +14,7 @@ export class YoutubeVideoService {
 		let id = '';
 		if (!parsedContent) {
 			const result = await this.searchVideo(content, index);
-			if (!result) throw new Error('Could not get video id');
+			if (!result) throw new Error('Could not get song');
 			id = result;
 		} else {
 			id = parsedContent[1];

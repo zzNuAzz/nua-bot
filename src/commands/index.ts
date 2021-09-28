@@ -10,8 +10,9 @@ import { nowplaying } from './collections/nowplaying';
 import { help } from './collections/help';
 import { Command } from '@/types/Command';
 import { queue } from './collections/queue';
+import { activity } from './collections/activity';
 
-const commandList = [play, pause, resume, skip, leave, nowplaying, help, queue];
+const commandList = [play, pause, resume, skip, leave, nowplaying, help, queue, activity];
 
 const commnadMap = new Map<string, Command>(
 	commandList.map(command => [command.name, command])
@@ -22,11 +23,13 @@ export const bootstrap = (client: Client): void => {
 
 	// fallback error
 	client.on('interactionCreate', async interaction => {
+		// await interaction.channel?.fetch()
+		// // console.log(interaction.channel?.code);
 		if (!interaction.isCommand() || !interaction.guildId) return;
 		try {
 			const command = commnadMap.get(interaction.commandName);
 			if (command) {
-				await command.execute(interaction);
+				await command.execute(interaction, client);
 			} else {
 				// command does not implement
 				await interaction.deferReply();

@@ -7,6 +7,7 @@ import { Client, Intents, VoiceState } from 'discord.js';
 import { bootstrap } from './commands';
 import { servers } from './models/Server';
 
+
 config();
 
 const client = new Client({
@@ -16,7 +17,11 @@ const client = new Client({
 		Intents.FLAGS.GUILD_VOICE_STATES,
 		Intents.FLAGS.GUILD_INTEGRATIONS,
 	],
-});
+}) as Client;
+
+// const clientDiscordTogether = new DiscordTogether(client, {
+// 	youtube: '755600276941176913'
+// });
 
 client.on('ready', () => {
 	console.log(`> Bot is on ready`);

@@ -62,6 +62,7 @@ export const play:Command = {
 		try {
 			const input = interaction.options.get('input')!.value! as string;
 			const playListId = YoutubeVideoService.isPlaylist(input);
+
 			if (playListId) {
 				const playlist = await YoutubeVideoService.getPlaylist(playListId);
 				const songs = playlist.songs.map((song: Song) => {
@@ -110,6 +111,9 @@ export const play:Command = {
 					],
 				});
 			}
-		} catch (e) {}
+		} catch (e) {
+			await interaction.followUp((e as Error).message);
+			return;
+		}
 	},
 };

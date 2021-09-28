@@ -1,5 +1,6 @@
 import { ChatCommandData } from '@/types/ChatCommandData';
 import { Constants, ApplicationCommandData, ChatInputApplicationCommandData } from 'discord.js';
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 export const slashSchema: ApplicationCommandData[] = [
     {
@@ -83,12 +84,44 @@ export const slashSchema: ApplicationCommandData[] = [
         name: 'help',
         description: 'Hướng dẫn sử dụng.',
       },
+      {
+        name: 'activity',
+        description: 'Tạo hoạt động cùng nhau',
+        options: [
+          {
+            name: 'application',
+            type: Constants.ApplicationCommandOptionTypes.STRING,
+            description: 'Chọn ứng dụng',
+            required: true,
+            choices: [
+              {name: 'Youtube Together', value:'youtube'},
+              {name: 'Poker', value:'poker'},
+              {name: 'Chess', value: 'chess'},
+              {name: 'Word Snack', value: 'wordsnack'},
+              {name: 'Doodle Crew', value: 'doodlecrew'},
+              {name: 'Letter Tile', value: 'lettertile'},
+              {name: 'Betrayal.io', value:'betrayal'},
+              {name: 'Fishington.io', value:'fishington'},
+              {name: 'Watch Together', value:'youtube2'},
+            ]
+          },
+          {
+            name: 'channel',
+            type: Constants.ApplicationCommandOptionTypes.CHANNEL,
+            required: false,
+            description: 'Chọn kênh'
+          },
+        ]
+      }
+      
+      
+          
 ]
 
-// export const prefix = '!';
 
 export const chatCommand: ChatCommandData[] = [
   {
+    type: 'deploy',
     name: '!nuabot_deploy',
     description: 'Deploy slash command to server',
     role: 'admin',

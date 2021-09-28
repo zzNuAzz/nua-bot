@@ -1,6 +1,6 @@
 {
 	"name": "nua-bot",
-	"version": "1.1.1",
+	"version": "1.3.1",
 	"description": "Bot play music for discord",
 	"main": "dist/index.js",
 	"repository": "git@github.com:zzNuAzz/nua-bot.git",

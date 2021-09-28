@@ -4,6 +4,7 @@ export default {
     error: '❌ Lỗi!',
     cantFindAnyThing: "❌ Đéo tìm thấy gì cả!",
     joinVoiceChannel: '🔊 Mày đã vào kênh hát đâu. Gọi ăn lìn à!',
+    notInVoiceChannel: '🔊 Đã vào hát đéo đâu. :)',
     failToJoinVoiceChannel: '❌ Tao đéo vào được kênh ý !!! Gọi lại đê.',
     failToPlay: '❌ Đéo hát được!',
     addedToQueue: 'Thêm vào hàng chờ bởi',
@@ -19,7 +20,7 @@ export default {
     resumed: '▶ Hát nà!',
     alreadyPlaying: '▶ Đang hát! Điếc à mà k nghe thấy.',
     leaved: '👋 Bye bye',
-    nothing: '🤷‍♂️ Nothing',
+    nothing: '🤷‍♂️ Danh sách chờ đang trống.',
     replyQueue: '🎶🎶🎶',
     queueTitle: (totalItem:number) => `🎶 Danh sách bài hát đang chờ - ${totalItem} bài hát 😶!!!`,
     invalidPosition: '❌ Invalid position!',
@@ -29,4 +30,6 @@ export default {
     adminHelpCommandTitle: '💡 Help command:',
     ping: '📶 Ping', 
     inMaintenance: '👉👈 Thằng đệ chưa code đấy. Có được không!!!!',
+    needProvideVoiceChannel: '💢 Vui lòng chọn voice channel hợp lệ',
+    youtubeInviteLabel: 'Xem thì xem, không xem thì xem',
   };

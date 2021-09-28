@@ -9,7 +9,7 @@ export const leave:Command = {
         await interaction.deferReply();
         const server = servers.get(interaction.guildId as string);
         if(!server) {
-            await interaction.followUp(messages.joinVoiceChannel);
+            await interaction.followUp(messages.notInVoiceChannel);
             return;
         }
         server.leave();
