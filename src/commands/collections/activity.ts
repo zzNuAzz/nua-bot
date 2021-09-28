@@ -68,22 +68,24 @@ export const activity: Command = {
             })
                 .then((res: { json: () => any; }) => res.json())
                 .then((invite: { error: any; code: any; }) => {
-                if (invite.error || !invite.code) throw new Error('An error occured while retrieving data !');
-                if (Number(invite.code) === 50013) throw new Error('Your bot lacks permissions to perform that action');
-                return `https://discord.com/invite/${invite.code}`
+                    if (invite.error || !invite.code) throw new Error('An error occured while retrieving data !');
+                    return invite.code;
                 });
-
+            if (Number(inviteCode) === 50013) {
+                await interaction.followUp('You lacks permissions to create invite link (code: 50013)');
+                return;
+            }
             await interaction.followUp({
                 content: `${interaction.member?.user} đã yêu cầu mở ${targetApplication.name} :)))`,
                 components: [
                     createInviteMessage({
                         type: application.value as string,
                         title: targetApplication.name as string,
-                        code: inviteCode,
+                        code: `https://discord.com/invite/${inviteCode}`,
                     }),
                 ],
             });
-                
+
         } catch(err) {
             console.log('watch_together', (err as Error).message);
             await interaction.followUp(messages.error);
