@@ -11,8 +11,9 @@ import { help } from './collections/help';
 import { Command } from '@/types/Command';
 import { queue } from './collections/queue';
 import { activity } from './collections/activity';
+import { ping } from './collections/ping';
 
-const commandList = [play, pause, resume, skip, leave, nowplaying, help, queue, activity];
+const commandList = [play, pause, resume, skip, leave, nowplaying, help, queue, activity, ping];
 
 const commnadMap = new Map<string, Command>(
 	commandList.map(command => [command.name, command])

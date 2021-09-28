@@ -1,14 +1,20 @@
-if (process.env.NODE_ENV === 'production') {
-	require('module-alias/register');
-}
-
 import { config } from 'dotenv';
+config();
+
+if (process.env.NODE_ENV !== 'development') {
+	require('module-alias/register');
+} else {
+	
+	console.log(process.env.DEV_TOKEN);
+	if(process.env.DEV_TOKEN) {
+		process.env.TOKEN = process.env.DEV_TOKEN;
+	}
+}
 import { Client, Intents, VoiceState } from 'discord.js';
 import { bootstrap } from './commands';
 import { servers } from './models/Server';
 
 
-config();
 
 const client = new Client({
 	intents: [
@@ -41,7 +47,6 @@ client.on('voiceStateUpdate', (oldState: VoiceState, newState: VoiceState) => {
 		console.log('unknown');
 	}
 });
-
 client.login(process.env.TOKEN).then(() => {
 	bootstrap(client);
 });
