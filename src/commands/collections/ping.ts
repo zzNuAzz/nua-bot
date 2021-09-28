@@ -8,6 +8,7 @@ export const ping = {
 		client: Client
 	): Promise<void> => {
 		await interaction.deferReply();
+		//https://stackoverflow.com/questions/63411268/discord-js-ping-command
 		interaction.followUp(
 			`${messages.ping} - Latency: ${Math.round(
 				Date.now() - interaction.createdTimestamp
