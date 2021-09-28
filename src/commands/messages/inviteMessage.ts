@@ -2,17 +2,31 @@ import messages from '@/constants/messages';
 import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
 
 export const createInviteMessage = (payload: {
-  type: 'youtube_watch',
+  type: string,
   title: string,
   code: string,
 }): MessageActionRow => {
-	//   return new MessageEmbed()
-	//     .setTitle('Mở Youtube:')
-	//     .setDescription(`[Click here!](${payload.code})`)
-	return new MessageActionRow().addComponents(
+	if(payload.type === 'youtube') {
+		return createButtonYoutubeInvite(payload)
+	}
+	
+	return  new MessageActionRow().addComponents(
 		new MessageButton()
-			.setLabel('Mở dzutube lên nào')
+			.setLabel(payload.title)
             .setURL(payload.code)
 			.setStyle('LINK')
 	);
+	
 }
+
+const createButtonYoutubeInvite = (payload: {
+	title: string,
+	code: string,
+  }): MessageActionRow => {
+	return new MessageActionRow().addComponents(
+		new MessageButton()
+			.setLabel(messages.youtubeInviteLabel)
+            .setURL(payload.code)
+			.setStyle('LINK')
+	);
+  }

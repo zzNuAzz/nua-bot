@@ -10,17 +10,15 @@ import { nowplaying } from './collections/nowplaying';
 import { help } from './collections/help';
 import { Command } from '@/types/Command';
 import { queue } from './collections/queue';
-import { watch_together } from './collections/watch_together';
+import { activity } from './collections/activity';
 
-import { DiscordTogether } from 'discord-together';
-
-const commandList = [play, pause, resume, skip, leave, nowplaying, help, queue, watch_together];
+const commandList = [play, pause, resume, skip, leave, nowplaying, help, queue, activity];
 
 const commnadMap = new Map<string, Command>(
 	commandList.map(command => [command.name, command])
 );
 
-export const bootstrap = (client: Client, clientDiscordTogether: DiscordTogether<any>): void => {
+export const bootstrap = (client: Client): void => {
 	deploy(client);
 
 	// fallback error
@@ -31,7 +29,7 @@ export const bootstrap = (client: Client, clientDiscordTogether: DiscordTogether
 		try {
 			const command = commnadMap.get(interaction.commandName);
 			if (command) {
-				await command.execute(interaction, client, clientDiscordTogether);
+				await command.execute(interaction, client);
 			} else {
 				// command does not implement
 				await interaction.deferReply();

@@ -30,4 +30,6 @@ export default {
     adminHelpCommandTitle: '💡 Help command:',
     ping: '📶 Ping', 
     inMaintenance: '👉👈 Thằng đệ chưa code đấy. Có được không!!!!',
+    needProvideVoiceChannel: '💢 Vui lòng chọn voice channel hợp lệ',
+    youtubeInviteLabel: 'Xem thì xem, không xem thì xem',
   };
