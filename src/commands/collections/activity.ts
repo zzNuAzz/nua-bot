@@ -54,7 +54,7 @@ export const activity: Command = {
             const inviteCode =  await fetch(`https://discord.com/api/v8/channels/${ targetChannelId }/invites`, {
                 method: 'POST',
                 body: JSON.stringify({
-                    max_age: 86400,
+                    max_age: 3600,
                     max_uses: 0,
                     target_application_id: targetApplication.id,
                     target_type: 2,
@@ -69,10 +69,10 @@ export const activity: Command = {
                 .then((res: { json: () => any; }) => res.json())
                 .then((invite: { error: any; code: any; }) => {
                 if (invite.error || !invite.code) throw new Error('An error occured while retrieving data !');
-                if (Number(invite.code) === 50013) console.warn('Your bot lacks permissions to perform that action');
+                if (Number(invite.code) === 50013) throw new Error('Your bot lacks permissions to perform that action');
                 return `https://discord.com/invite/${invite.code}`
                 });
-                
+
             await interaction.followUp({
                 content: `${interaction.member?.user} đã yêu cầu mở ${targetApplication.name} :)))`,
                 components: [
@@ -88,8 +88,5 @@ export const activity: Command = {
             console.log('watch_together', (err as Error).message);
             await interaction.followUp(messages.error);
         }
-
-	
-
 	},
 };
