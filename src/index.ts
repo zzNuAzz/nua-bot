@@ -19,10 +19,6 @@ const client = new Client({
 	],
 }) as Client;
 
-// const clientDiscordTogether = new DiscordTogether(client, {
-// 	youtube: '755600276941176913'
-// });
-
 client.on('ready', () => {
 	console.log(`> Bot is on ready`);
 });
@@ -41,6 +37,8 @@ client.on('voiceStateUpdate', (oldState: VoiceState, newState: VoiceState) => {
 	} else if (oldState.channelId !== null && newState.channelId === null) {
 		// User Leave voice channel
 		console.log('A user leave voice channel');
+	} else {
+		console.log('unknown');
 	}
 });
 

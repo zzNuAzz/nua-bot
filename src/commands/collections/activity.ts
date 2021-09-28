@@ -1,13 +1,7 @@
 import messages from '@/constants/messages';
 import { Command } from '@/types/Command';
 const fetch = require('node-fetch');
-import {
-	entersState,
-	joinVoiceChannel,
-	VoiceConnectionStatus,
-} from '@discordjs/voice';
-import { DiscordTogether } from 'discord-together';
-import { Application, Channel, Client, CommandInteraction, GuildMember, VoiceChannel } from 'discord.js';
+import { Client, CommandInteraction, GuildMember } from 'discord.js';
 import { createInviteMessage } from '../messages/inviteMessage';
 
 interface ApplicationTogether {
