@@ -18,7 +18,7 @@ export default async function pushUETNewsNotification(req: UETNewsPushNotificati
 		if(channel && channel instanceof TextChannel) {
 			const textChannel = channel as TextChannel;
 			await textChannel.sendTyping();
-			await textChannel.send({ content: "@everyone UET-news có thông báo mới", embeds: [message] });
+			await textChannel.send(message);
 		}
 		res.json({
 			success: true,
